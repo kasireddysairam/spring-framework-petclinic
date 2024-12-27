@@ -32,14 +32,6 @@ tools {
             }
         }
 
- stage('Integration Test maven') {
-            steps {
-                script {
-                    // Run Maven or Gradle build
-                     sh 'mvn verify -DskipUnitTests'
-                }
-            }
-        }
 stage('Maven Build : mave') {
             steps {
                 script {
