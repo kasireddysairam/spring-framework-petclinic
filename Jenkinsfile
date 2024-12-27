@@ -11,11 +11,19 @@ tools {
             }
         }
 
-        stage('Build') {
+        stage('mvn compile') {
             steps {
                 script {
                     // Run Maven or Gradle build
-                    sh 'mvn clean install -DskipTests'
+                    sh 'mvn  compile'
+                }
+            }
+        }
+        stage('mvn test') {
+            steps {
+                script {
+                    // Run Maven or Gradle build
+                    sh 'mvn   test'
                 }
             }
         }
