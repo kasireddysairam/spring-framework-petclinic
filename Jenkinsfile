@@ -32,17 +32,19 @@ tools {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonar.projectKey': 'petclinic', 
-                                'sonar.projectName': 'petclinic', 
-                                'sonar.projectVersion': '1.0', 
-                                'sonar.sources': src ,
-                                'sonar.java.binaries': 'target/classes') {
-                    sh 'mvn sonar:sonar' 
-                }
-            }
+       stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv(
+            'sonar.projectKey': 'petclinic', // Replace with your project key
+            'sonar.projectName': 'petclinic', // Replace with your project name
+            'sonar.projectVersion': '1.0', // Replace with your project version
+            'sonar.sources': 'src/main/java,src/main/resources', // Comma-separated source directories
+            'sonar.java.binaries': 'target/classes' // Path to compiled classes
+        ) {
+            sh 'mvn sonar:sonar' // Assuming Maven is used for building
         }
+    }
+}
 
 stage('Maven Build : mave') {
             steps {
