@@ -33,7 +33,7 @@ tools {
         }
 
 
-         stage('Unit Test maven') {
+         stage('Static code analysis: Sonarqube') {
             steps {
                
                    withSonarQubeEnv(credentialsId: 'sonarqube-token') {
