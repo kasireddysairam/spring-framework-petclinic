@@ -32,6 +32,16 @@ tools {
             }
         }
 
+
+         stage('Unit Test maven') {
+            steps {
+               
+                   withSonarQubeEnv(credentialsId: 'sonarqube-token') {
+                   sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
+
      
 
 stage('Maven Build : mave') {
