@@ -32,19 +32,7 @@ tools {
             }
         }
 
-       stage('SonarQube Analysis') {
-    steps {
-        withSonarQubeEnv(
-            'sonar.projectKey': 'petclinic', 
-            'sonar.projectName': 'petclinic', 
-            'sonar.projectVersion': '1.0', 
-            'sonar.sources': 'src/main/java,src/main/resources', 
-            'sonar.java.binaries': 'target/classes' 
-        ) {
-            sh 'mvn sonar:sonar' 
-        }
-    }
-}
+     
 
 stage('Maven Build : mave') {
             steps {
