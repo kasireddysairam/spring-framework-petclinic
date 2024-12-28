@@ -37,7 +37,7 @@ tools {
                 withSonarQubeEnv('sonar.projectKey': 'petclinic', 
                                 'sonar.projectName': 'petclinic', 
                                 'sonar.projectVersion': '1.0', 
-                                'sonar.sources': .
+                                'sonar.sources': src ,
                                 'sonar.java.binaries': 'target/classes') {
                     sh 'mvn sonar:sonar' 
                 }
