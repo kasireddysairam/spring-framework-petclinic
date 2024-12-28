@@ -4,8 +4,11 @@ pipeline {
     
 tools {
         maven 'maven'  
+    } 
+    environment {
+        SCANNER_HOME=tool 'sonarqube_scanner'
     }
-    
+
     stages {
         stage('git checkout ') {
             steps {
@@ -33,15 +36,17 @@ tools {
         }
 
 
-         stage('Static code analysis: Sonarqube') {
-            steps {
-               
-                   withSonarQubeEnv(credentialsId: 'sonarqube-token') {
-                   sh 'mvn clean package sonar:sonar'
+         
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonarqube-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Petclinic \
+                    -Dsonar.java.binaries=. \
+                    -Dsonar.projectKey=Petclinic '''
+    
                 }
             }
         }
-
      
 
 stage('Maven Build : mave') {
