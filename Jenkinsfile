@@ -16,55 +16,7 @@ tools {
             }
         }
 
-        stage('mvn compile') {
-            steps {
-                script {
-                    // Run Maven or Gradle build
-                    sh 'mvn  compile'
-                }
-            }
-        }
-        
-
-        stage('Unit Test maven') {
-            steps {
-                script {
-                    // Run Maven or Gradle build
-                    sh 'mvn   test'
-                }
-            }
-        }
-
-
-         
-        stage("Sonarqube Analysis "){
-            steps{
-                withSonarQubeEnv('sonarqube-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Petclinic \
-                    -Dsonar.java.binaries=. \
-                    -Dsonar.projectKey=Petclinic '''
-    
-                }
-            }
-        }
-        
-stage("SonarQube Quality Gate Check") {
-            steps {
-                script {
-                def qualityGate = waitForQualityGate()
-                    
-                    if (qualityGate.status != 'OK') {
-                        echo "${qualityGate.status}"
-                        error "Quality Gate failed: ${qualityGateStatus}"
-                    }
-                    else {
-                        echo "${qualityGate.status}"
-                        echo "SonarQube Quality Gates Passed"
-                    }
-                }
-            }
-        }
-
+       
 stage('Maven Build : mave') {
             steps {
                 script {
